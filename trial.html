@@ -1,16 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="trial.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>Radish Challenge</h1>
-    <hr>What's your name?<hr>
-    <input id="x">
+    <meta http-equiv="refresh" content="500,https://www.youtube.com/watch?v=dQw4w9WgXcQ"/>
+
+    <h1>MyMcGill CS Portal</h1>
+    <h4> by Michael, Rohan and Christian </h4>
     
+    <hr>
+    <h2> What courses do you want to take?</h2>
+    <hr>
     
+    <input id="first">
+    <button onclick="f1()">Submit</button>
+    <p id="return"></p>
+    
+    <hr>
+    <h2> Click here predict your future GPA! <h2>
+    <button id="button3" onclick= "window.location.href ='https://medium.com/@techie4good/no-one-gives-a-fuck-about-your-gpa-81f2cb7f2e2'">CLICK HERE!</button>
+    <hr>
+
+    <h2> Are you a CS Major at McGill? </h2>
+    <button id="button1" onclick= "window.location.href ='https://mcgillsucks.wordpress.com/'"> YES! </button>
+    <button id="button2" onclick="window.location.href = 'https://www.concordia.ca/admissions/undergraduate/apply-now.html';"> NO!</button>
+    <hr>
+
+    <h2> Are you a CS Major at Concordia? </h2>
+    <button id="button1" onclick= "window.location.href ='https://www.cs.mcgill.ca/academic/graduate/applying/';"> YES! </button>
+    <button id="button2" onclick="window.location.href = 'https://www.quora.com/What-are-the-top-five-best-decisions-you-ever-made';"> NO!</button>
+    <hr>
+
+    <p>For legal reasons this is a joke...<p>
+    
+    <script>
+        const sampmap = new Map();
+        let message = "Prereqs you need to take: ";
+        let count = 0;
+        
+        sampmap.set('math141',['math140']);
+        sampmap.set('math222',['math141']);
+        sampmap.set('math223',['math133']);
+        sampmap.set('math323',['math141']);
+        sampmap.set('comp206',['comp202','comp250']);
+        sampmap.set('comp250',['comp202']);
+        sampmap.set('comp251',['comp250','math240']);
+        sampmap.set('comp273',['comp206']);
+        sampmap.set('comp302',['comp250','math240']);
+        sampmap.set('comp303',['comp206','comp250']);
+        sampmap.set('comp310',['comp273']);
+        sampmap.set('comp321',['comp206','comp251']);
+        sampmap.set('comp322',['comp250','comp206']);
+        sampmap.set('comp330',['comp251']);
+        sampmap.set('comp345',['comp250','math240']);
+        sampmap.set('comp350', ['math222', 'math223', 'comp202', 'comp250']);
+        sampmap.set('comp360', ['comp251', 'math240']);
+        sampmap.set('comp417', ['comp251', 'math223', 'comp206']);
+        sampmap.set('comp421', ['comp206', 'comp251', 'comp302']);
+        sampmap.set('comp424', ['comp206', 'math323', 'comp251']);
+        sampmap.set('comp445', ['comp250', 'math240']);
+        sampmap.set('comp451', ['comp251', 'math222', 'math223', '323']);
+        sampmap.set('comp512', ['comp310', 'comp251']);
+        sampmap.set('comp514', ['math223','math323','comp206', 'comp250']);
+        sampmap.set('comp520', ['comp273', 'comp302']);
+        sampmap.set('comp525',['comp251','comp330']);
+        sampmap.set('comp527',['comp302']);
+        sampmap.set('comp531',['comp330']);
+        sampmap.set('comp547',['comp360','math323']);
+        sampmap.set('comp555',['comp303']);
+        sampmap.set('comp557',['math222','math223','comp250','comp206']);
+        sampmap.set('comp558',['comp251','math222','math223']);
+        sampmap.set('comp559',['math222','math223','comp206','comp250']);
+        
+        
+        
+        function f1(){
+            let inp = document.querySelector("#first");
+            let outp = document.querySelector("#return");
+            let result = ((inp.value).toLowerCase()).replaceAll(' ','');
+
+             
+            let trial = sampmap.get(result);
+            message += "<br />";
+            f2(trial);
+            
+            if (count > 0)
+            {
+                outp.innerHTML = message + result;
+            }
+            else
+            {
+                outp.innerHTML = "No prequisites";
+            }
+
+            message = "Prereqs you need to take: ";
+            count = 0;
+            
+           
+        
+        }
+        function f2(arr){
+            if (arr != undefined){
+                for (let i = 0; i < arr.length; i++)
+                {
+                    
+                    f2(sampmap.get(arr[i]));
+                    
+                   
+                    if (i == 0 && i != arr.length - 1)
+                    {
+                        message += arr[i] + " </br >";
+                    }
+                    else if (i == arr.length - 1)
+                    {
+                        message += arr[i] + " ";
+                    }
+                    else{
+                        message += arr[i] + " ";
+                    }
+                   // message += arr[i] + " ";
+                    count += 1;
+                    
+                    
+                }
+                console.log(message);
+                message += " -> " ;
+                
+            }
+           //message += "</br>";
+            
+            
+        }
+
+    </script>
+
 </body>
+
 </html>
+
+
